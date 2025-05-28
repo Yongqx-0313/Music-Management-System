@@ -1,4 +1,4 @@
-<?php include'evo_project_music2_db.php' ?>
+<?php include'db_connect.php' ?>
 <style>
 	.playlist-item:hover{
 		background: rgb(110,109,109);

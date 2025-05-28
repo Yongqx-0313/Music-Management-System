@@ -1,5 +1,5 @@
 <?php
-include 'evo_project_music2_db.php';
+include 'db_connect.php';
 $qry = $conn->query("SELECT * FROM playlist where id = ".$_GET['id'])->fetch_array();
 foreach($qry as $k => $v){
 	if($k=='title')

@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<?php include 'evo_project_music2_db.php' ?>
+<?php include 'db_connect.php' ?>
 <style>
 	.column {
 	  float: left;

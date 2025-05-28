@@ -6,7 +6,7 @@ Class Action {
 
 	public function __construct() {
 		ob_start();
-   	include 'evo_project_music2_db.php';
+   	include 'db_connect.php';
     
     $this->db = $conn;
 	}

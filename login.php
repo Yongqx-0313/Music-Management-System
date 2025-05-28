@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 session_start();
-include('./evo_project_music2_db.php');
+include('./db_connect.php');
 ?>
 <head>
   <meta charset="utf-8">
