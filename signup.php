@@ -1,4 +1,4 @@
-<?php include 'db_connect.php' ?>
+<?php include 'evo_project_music2_db.php' ?>
 <div class="container-fluid">
 	<form action="" id="signup">
 		<div class="col-lg-12">

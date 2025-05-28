@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<?php include 'db_connect.php'; ?>
+<?php include 'evo_project_music2_db.php'; ?>
 <?php 
 $qry = $conn->query("SELECT * FROM users where id = ".$_SESSION['login_id'])->fetch_array();
 foreach($qry as $k => $v){

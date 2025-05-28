@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'evo_project_music2_db.php';
 if(isset($_GET['id'])){
 	$qry = $conn->query("SELECT * FROM genres where id={$_GET['id']}")->fetch_array();
 	foreach($qry as $k => $v){

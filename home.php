@@ -1,4 +1,4 @@
-<?php include('db_connect.php') ?>
+<?php include('evo_project_music2_db.php') ?>
 <!-- Info boxes -->
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">

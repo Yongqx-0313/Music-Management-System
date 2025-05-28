@@ -1,4 +1,4 @@
-<?php include 'db_connect.php' ?>
+<?php include 'evo_project_music2_db.php' ?>
 <?php
 if(isset($_GET['id'])){
 	$type_arr = array('',"Admin","Subscriber");

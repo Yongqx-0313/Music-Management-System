@@ -1,9 +1,9 @@
 <?php session_start() ?>
 <?php 
-include 'db_connect.php';
+include 'evo_project_music2_db.php';
 $items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p inner join uploads m on m.id = p.music_id where p.playlist_id ={$_GET['pid']} ");
 ?>
-<?php include 'db_connect.php'; ?>
+<?php include 'evo_project_music2_db.php'; ?>
 <div class="container-fluid">
 	<form action="" id="manage_playlist_items">
 	<input type="hidden" name="playlist_id" value="<?php echo $_GET['pid'] ?>">
