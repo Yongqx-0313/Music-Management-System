@@ -5,10 +5,10 @@
         <span class="brand-text font-weight-light  text-gradient-primary"><i>Music</i></span>
 
       </a>
-      <div class="dropdown-menu" style="">
+      <div class="dropdown-menu">
         <a class="dropdown-item manage_account" href="javascript:void(0)" data-id="<?php echo $_SESSION['login_id'] ?>">Manage Account</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="ajax.php?action=logout">Logout</a>
+        <a class="dropdown-item" onclick="location.href='ajax.php?action=logout'">Logout</a>
       </div>
     </div>
     <div class="sidebar">
@@ -71,6 +71,7 @@
     </div>
   </aside>
   <script>
+    
   	$(document).ready(function(){
   		var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'home' ?>';
   		if($('.nav-link.nav-'+page).length > 0){
