@@ -7,20 +7,20 @@
 				<div id="msg"></div>
 					<div class="row">
 							<div class="form-group col-md-6">
-								<input type="text" class="form-control" placeholder="First name" name='firstname'>
+								<input type="text" class="form-control" placeholder="First name" name='firstname' maxlength="201" required>
 							</div>
 							<div class="form-group col-md-6">
-								<input type="text" class="form-control" placeholder="Last name" name='lastname'>
+								<input type="text" class="form-control" placeholder="Last name" name='lastname' maxlength="201" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-12">
-								<input type="email" class="form-control" placeholder="Email" name='email'>
+								<input type="email" class="form-control" placeholder="Email" name='email' maxlength="201" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-12">
-								<input type="password" class="form-control" placeholder="Password" name='password'>
+								<input type="password" class="form-control" placeholder="Password" name='password' required>
 							</div>
 						</div>
 						<b><small class="text-muted"><b>Gender</b></small></b>
@@ -46,15 +46,16 @@
 					</div>
 					<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" name="contact" class="form-control form-control-sm" required="" placeholder="Contact">
+								<input type="tel" name="contact" class="form-control form-control-sm" placeholder="Contact" pattern="[0-9]{3}-[0-9]{7}" required>
+								<small>Sample Format: 012-3456789</small>
 							</div>
 							<div class="form-group">
-								<textarea id="" cols="30" rows="4" name="address" class="form-control" placeholder="Address"></textarea>
+								<textarea id="" cols="30" rows="4" name="address" class="form-control" placeholder="Address" required></textarea>
 							</div>
 						<div class="form-group">
 						<label for="" class="control-label">Profile Picture</label>
 							<div class="custom-file">
-		                      <input type="file" class="custom-file-input" id="customFile" name="pp" accept="image/*" onchange="displayImgProfile(this,$(this))">
+		                      <input type="file" class="custom-file-input" id="customFile" name="pp" accept="image/*" onchange="displayImgProfile(this,$(this))" required>
 		                      <label class="custom-file-label" for="customFile">Choose file</label>
 		                    </div>
 						</div>
