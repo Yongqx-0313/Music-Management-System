@@ -4,7 +4,7 @@
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box bg-black border border-primary">
              
-              <span class="info-box-icon bg-primary elevation-1" data-widget="pushmenu" href="" role="button"><i class="fas fa-th-list text-gradient-primary">
+              <span class="info-box-icon bg-primary elevation-1"  href="" role="button"><i class="fas fa-th-list text-gradient-primary">
               </i></span>
 
               <div class="info-box-content">
