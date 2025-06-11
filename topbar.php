@@ -25,7 +25,7 @@
       <li class="nav-item dropdown">
             <a class="nav-link"  data-toggle="dropdown" aria-expanded="true" href="javascript:void(0)">
               <span>
-                <div class="d-flex badge-pill align-items-center bg-gradient-primary p-1" style="background: #337cca47 linear-gradient(180deg,#268fff17,#007bff66) repeat-x!important;bprder:50px">
+                <div class="d-flex badge-pill align-items-center bg-gradient-primary p-1" style="background: #337cca47 linear-gradient(180deg,#268fff17,#007bff66) repeat-x!important;border:50px">
                   <?php if(isset($_SESSION['login_profile_pic']) && !empty($_SESSION['login_profile_pic'])): ?>
                     <div class="rounded-circle mr-1" style="width: 25px;height: 25px;top:-5px;left: -40px">
                       <img src="assets/uploads/<?php echo $_SESSION['login_profile_pic'] ?>" class="image-fluid image-thumbnail rounded-circle" alt="" style="max-width: calc(100%);height: calc(100%);">

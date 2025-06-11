@@ -1,14 +1,13 @@
   <aside class="main-sidebar sidebar-dark-navy bg-black elevation-4">
-    <div class="dropdown">
-   	<a href="javascript:void(0)" class="brand-link bg-black" data-toggle="dropdown" aria-expanded="true">
+   <div class="dropdown">
+   	<button class="brand-link bg-black d-flex justify-content-start" data-toggle="dropdown" aria-expanded="true">
         <span class="brand-image img-circle elevation-3 d-flex justify-content-center align-items-center text-white font-weight-500" style="width: 38px;height:50px;font-size: 2rem"><b><i class="fa fa-headphones-alt text-gradient-primary"></i></b></span>
         <span class="brand-text font-weight-light  text-gradient-primary"><i>Music</i></span>
-
-      </a>
+</button>
       <div class="dropdown-menu">
-        <a class="dropdown-item manage_account" href="javascript:void(0)" data-id="<?php echo $_SESSION['login_id'] ?>">Manage Account</a>
+         <button class="dropdown-item" type="button" id="manage_my_account"><i class="fa fa-cog"></i> Manage Account</button>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" onclick="location.href='ajax.php?action=logout'">Logout</a>
+        <button class="dropdown-item" onclick="location.href='ajax.php?action=logout'"><i class="fa fa-power-off"></i> Logout</button>
       </div>
     </div>
     <div class="sidebar">
@@ -86,8 +85,9 @@
         }
 
   		}
-      $('.manage_account').click(function(){
-        uni_modal('Manage Account','manage_user.php?id='+$(this).attr('data-id'))
-      })
+       $(document).on('click', '#manage_my_account', function(){
+    console.log("Manage account clicked");
+    uni_modal("Manage Account", "manage_account.php", "large");
+});
   	})
   </script>
