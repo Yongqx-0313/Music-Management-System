@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Restrict access to admin only
 if (!isset($_SESSION['login_type']) || $_SESSION['login_type'] != 1) {
@@ -16,13 +18,13 @@ $result = $conn->query($sql);
 
 <?php include'db_connect.php' ?>
 <div class="col-lg-12">
-	<div class="card card-outline card-success">
+	<div class="card card-outline card-success pr-4 pr-xl-0">
 		<div class="card-header">
 			<!-- <div class="card-tools">
 				<a class="btn btn-block btn-sm btn-default btn-flat border-primary" href="./index.php?page=new_user"><i class="fa fa-plus"></i> Add New User</a>
 			</div> -->
 		</div>
-		<div class="card-body">
+		<div class="card-body table-responsive">
 			<table class="table tabe-hover table-bordered" id="list">
 				<thead>
 					<tr>
