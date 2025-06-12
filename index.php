@@ -83,7 +83,11 @@
             .audio-control-btn:hover{
               color:white
             }
-               
+            .truncate{
+              color:#fff;
+              -webkit-line-clamp:2!important;
+              line-clamp:2!important;
+            }   
           </style>
       <div id="audio-player" class="d-flex w-100 justify-content-end align-items-center bg-dark py-1 position-absoulute">
         
@@ -230,7 +234,7 @@
           success:function(resp){
             if(resp){
               resp = JSON.parse(resp)
-              var _html = '<div id="pdet" class="d-flex justify-content-center align-items-center"><img src="assets/uploads/'+resp.cover_image+'" alt="" class="img-thumbnail bg-gradient-1" style="width: 50px;height: 50px;object-fit: cover"><div class="ml-2 mr-4"><div><b><large>'+resp.title+'</large></b></div><div><b><small>'+resp.artist+'</small></b></div></div></div>'
+              var _html = '<div id="pdet" class="d-flex justify-content-center align-items-center"><img src="assets/uploads/'+resp.cover_image+'" alt="" class="img-thumbnail bg-gradient-1" style="width: 50px;height: 50px;object-fit: cover"><div class="ml-2 mr-4"><div><b><large class="truncate">'+resp.title+'</large></b></div><div><b><small>'+resp.artist+'</small></b></div></div></div>'
               if($('#audio-player #pdet').length > 0)
                 $('#audio-player #pdet').remove()
               $('#audio-player').prepend(_html)
