@@ -50,7 +50,7 @@
 							</button>
 							<div class="dropdown-menu bg-dark">
 								<a class="dropdown-item bg-dark" data-id="<?php echo $row['id'] ?>" href="index.php?page=edit_music&id=<?php echo $row['id'] ?>">Edit</a>
-								<a class="dropdown-item delete_music bg-dark" data-id="<?php echo $row['id'] ?>" href="javascript:void(0)">Delete</a>
+								<button class="dropdown-item delete_music bg-dark" data-id="<?php echo $row['id'] ?>" type="button">Delete</button>
 							</div>
 						</div>
 					<?php endif; ?>
