@@ -192,12 +192,34 @@ Class Action {
 			return 1;
 		}
 	}
-	function delete_user(){
-		extract($_POST);
-		$delete = $this->db->query("DELETE FROM users where id = ".$id);
-		if($delete)
-			return 1;
+function delete_user(){
+	extract($_POST);
+
+	// Get the type of user being deleted
+	$getUser = $this->db->query("SELECT * FROM users WHERE id = $id");
+	if ($getUser->num_rows == 0) return 0;
+
+	$user = $getUser->fetch_assoc();
+
+	// If the user is an admin (type = 1)
+	if ($user['type'] == 1) {
+		// Count how many admins are left
+		$countAdmins = $this->db->query("SELECT COUNT(*) as total FROM users WHERE type = 1")->fetch_assoc()['total'];
+
+		if ($countAdmins <= 1) {
+			// Do not allow deleting the last admin
+			return 2; // special code for "cannot delete last admin"
+		}
 	}
+
+	// Proceed with deletion
+	$delete = $this->db->query("DELETE FROM users WHERE id = $id");
+	if ($delete)
+		return 1;
+
+	return 0;
+}
+
 	function save_genre(){
 		extract($_POST);
 		$data = "";

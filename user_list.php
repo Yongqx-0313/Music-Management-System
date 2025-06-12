@@ -40,7 +40,7 @@
 		                      <div class="dropdown-divider"></div>
 		                      <a class="dropdown-item" href="./index.php?page=edit_user&id=<?php echo $row['id'] ?>">Edit</a>
 		                      <div class="dropdown-divider"></div>
-		                      <a class="dropdown-item delete_user" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">Delete</a>
+		                      <button class="dropdown-item delete_user" data-id="<?php echo $row['id'] ?>">Delete</button>
 		                    </div>
 						</td>
 					</tr>	
@@ -57,24 +57,39 @@
 		uni_modal("<i class='fa fa-id-card'></i> User Details","view_user.php?id="+$(this).attr('data-id'))
 	})
 	$('.delete_user').click(function(){
-	_conf("Are you sure to delete this user?","delete_user",[$(this).attr('data-id')])
+	let id = $(this).attr('data-id');
+		if(confirm("Are you sure to delete this user?")) {
+		delete_user(id);
+		}
 	})
 	})
-	function delete_user($id){
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=delete_user',
-			method:'POST',
-			data:{id:$id},
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
+	function delete_user(id){
+	start_load()
+	$.ajax({
+		url: 'ajax.php?action=delete_user',
+		method: 'POST',
+		data: { id: id },
+		success: function(resp){
+			end_load(); // ✅ always stop the loading indicator
 
-				}
+			if(resp == 1){
+				alert_toast("User successfully deleted", 'success');
+				setTimeout(function(){
+					location.reload();
+				}, 1500);
 			}
-		})
-	}
+			else if(resp == 2){
+				alert_toast(" Cannot delete the last remaining admin!", 'error');
+			}
+			else {
+				alert_toast("⚠️ Deletion failed", 'error');
+			}
+		},
+		error: function(){
+			end_load(); // ✅ in case of error, also stop loader
+			alert_toast("🚫 Server error occurred", 'error');
+		}
+	});
+}
+
 </script>
