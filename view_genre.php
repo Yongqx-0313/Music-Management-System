@@ -23,7 +23,7 @@ foreach($qry as $k => $v){
 			</div>
 		</div>
 		<div class="col-md-8">
-			<h5 class="text-white">Title: <?php echo ucwords($ptitle); ?></h5>
+			<h5 class="text-white">Title: <?php echo ucwords($genre); ?></h5>
 			<h6 class="text-white border-bottom border-primary"><b class="text-white">Description:</b></h6>
 			<div class="text-white">
 				<?php echo html_entity_decode($description) ?>
