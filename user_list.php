@@ -35,7 +35,7 @@
 							<button type="button" class="btn btn-default btn-sm btn-flat border-info wave-effect text-info dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 		                      Action
 		                    </button>
-		                    <div class="dropdown-menu" style="">
+		                    <div class="dropdown-menu">
 		                      <button class="dropdown-item view_user" button="button" data-id="<?php echo $row['id'] ?>">View</button>
 		                      <div class="dropdown-divider"></div>
 		                      <a class="dropdown-item" href="./index.php?page=edit_user&id=<?php echo $row['id'] ?>">Edit</a>
