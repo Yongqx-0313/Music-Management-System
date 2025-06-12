@@ -33,8 +33,12 @@ if($action == 'signup'){
 }
 if($action == 'save_user'){
 	$save = $crud->save_user();
-	if($save)
+	if($save){
 		echo $save;
+	} else {
+		echo "error"; // ✅ Always respond something!
+	}
+	exit(); // ✅ Important: avoid loading indefinitely
 }
 if($action == 'update_user'){
 	$save = $crud->update_user();
@@ -93,4 +97,7 @@ if($action == 'save_playlist_items'){
 		echo $save;
 }
 ob_end_flush();
+
+
+
 ?>

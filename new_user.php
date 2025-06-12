@@ -10,11 +10,11 @@
 						<b class="text-muted">Personal Information</b>
 						<div class="form-group">
 							<label for="" class="control-label">First Name</label>
-							<input type="text" name="firstname" class="form-control form-control-sm" required value="<?php echo isset($firstname) ? $firstname : '' ?>">
+							<input type="text" name="firstname" class="form-control form-control-sm" required value="<?php echo isset($firstname) ? htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8') : '' ?>">
 						</div>
 						<div class="form-group">
 							<label for="" class="control-label">Last Name</label>
-							<input type="text" name="lastname" class="form-control form-control-sm" required value="<?php echo isset($lastname) ? $lastname : '' ?>">
+							<input type="text" name="lastname" class="form-control form-control-sm" required value="<?php echo isset($lastname) ?htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8') : '' ?>">
 						</div>
 						<div class="form-group">
 							<label for="" class="control-label">Last Name</label>

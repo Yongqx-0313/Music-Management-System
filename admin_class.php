@@ -93,64 +93,77 @@ Class Action {
 		}
 	}
 	function signup(){
-		extract($_POST);
-		$data = "";
-		foreach($_POST as $k => $v){
-			if(!in_array($k, array('id','cpass','month','day','year')) && !is_numeric($k)){
-				if($k =='password'){
-					if(empty($v))
-						continue;
-					$v = md5($v);
+	extract($_POST);
+	$data = "";
+	foreach($_POST as $k => $v){
+		if(!in_array($k, array('id','cpass','month','day','year')) && !is_numeric($k)){
+			// ✅ Sanitize to prevent script injection
+			$v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
 
-				}
-				if(empty($data)){
-					$data .= " $k='$v' ";
-				}else{
-					$data .= ", $k='$v' ";
-				}
+			if($k == 'password'){
+				if(empty($v)) continue;
+				$v = md5($v); // 🔒 Consider using password_hash() instead
 			}
-		}
-		if(isset($email)){
-			$check = $this->db->query("SELECT * FROM users where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
-			if($check > 0){
-				return 2;
-				exit;
+
+			// ✅ Add to SQL string
+			if(empty($data)){
+				$data .= " $k='$v' ";
+			}else{
+				$data .= ", $k='$v' ";
 			}
-		}
-		if(isset($_FILES['pp']) && $_FILES['pp']['tmp_name'] != ''){
-			$fnamep = strtotime(date('y-m-d H:i')).'_'.$_FILES['pp']['name'];
-			$move = move_uploaded_file($_FILES['pp']['tmp_name'],'assets/uploads/'. $fnamep);
-			$data .= ", profile_pic = '$fnamep' ";
-
-		}
-		if(empty($id)){
-			$save = $this->db->query("INSERT INTO users set $data");
-
-		}else{
-			$save = $this->db->query("UPDATE users set $data where id = $id");
-		}
-
-		if($save){
-			if(empty($id))
-				$id = $this->db->insert_id;
-			foreach ($_POST as $key => $value) {
-				if(!in_array($key, array('id','cpass','password')) && !is_numeric($key))
-					if($k = 'pp'){
-						$k ='profile_pic';
-					}
-					if($k = 'cover'){
-						$k ='cover_pic';
-					}
-					$_SESSION['login_'.$key] = $value;
-			}
-					$_SESSION['login_id'] = $id;
-					if(isset($_FILES['pp']) &&$_FILES['pp']['tmp_name'] != '')
-						$_SESSION['login_profile_pic'] = $fnamep;
-					if(!isset($type))
-						$_SESSION['login_type'] = 2;
-			return 1;
 		}
 	}
+
+	// ✅ Check email existence
+	if(isset($email)){
+		$email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); // sanitize again
+		$check = $this->db->query("SELECT * FROM users WHERE email = '$email' " . (!empty($id) ? " AND id != {$id} " : ''))->num_rows;
+		if($check > 0){
+			return 2;
+			exit;
+		}
+	}
+
+	// ✅ Upload image safely
+	if(isset($_FILES['pp']) && $_FILES['pp']['tmp_name'] != ''){
+		$safe_filename = preg_replace("/[^A-Za-z0-9.\-_]/", '', $_FILES['pp']['name']);
+		$fnamep = strtotime(date('Y-m-d H:i')) . '_' . $safe_filename;
+		$move = move_uploaded_file($_FILES['pp']['tmp_name'], 'assets/uploads/' . $fnamep);
+		if ($move) {
+			$data .= ", profile_pic = '$fnamep' ";
+		}
+	}
+
+	// ✅ Insert or update
+	if(empty($id)){
+		$save = $this->db->query("INSERT INTO users SET $data");
+	}else{
+		$save = $this->db->query("UPDATE users SET $data WHERE id = $id");
+	}
+
+	if($save){
+		if(empty($id)) $id = $this->db->insert_id;
+
+		// ✅ Sanitize and store in session
+		foreach ($_POST as $key => $value) {
+			if(!in_array($key, array('id','cpass','password')) && !is_numeric($key)){
+				$value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+				if($key == 'pp') $key = 'profile_pic';
+				if($key == 'cover') $key = 'cover_pic';
+				$_SESSION['login_'.$key] = $value;
+			}
+		}
+		$_SESSION['login_id'] = $id;
+
+		if(isset($_FILES['pp']) && $_FILES['pp']['tmp_name'] != '')
+			$_SESSION['login_profile_pic'] = $fnamep;
+
+		if(!isset($type))
+			$_SESSION['login_type'] = 2;
+
+		return 1;
+	}
+}
 
 	function update_user(){
 		extract($_POST);
