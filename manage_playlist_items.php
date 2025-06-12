@@ -26,9 +26,9 @@ $items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p
 					<?php 
 					while($row = $items->fetch_assoc()):
 					?>
-					<tr data-id='<?php echo $row['id'] ?>'>
+					<tr data-id='<?php echo $row['music_id'] ?>'>
 						<td><span class="btn bg-gradient-success rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px;z-index:2" onclick="play_music({0:{id:<?php echo $row['id'] ?>,upath:'assets/uploads/<?php echo $row['upath'] ?>'}})"><div class="fa fa-play text-white"></div></span></td>
-						<td><input name='music_id[]' value='<?php echo $row['id'] ?>' type='hidden'><i class='fa fa-music text-gradient-primary mr-2'></i><?php echo $row['title'] ?></td>
+						<td><input name='music_id[]' value='<?php echo $row['music_id'] ?>' type='hidden'><i class='fa fa-music text-gradient-primary mr-2'></i><?php echo $row['title'] ?></td>
 						<td class='text-right'><button type='button' onclick='$(this).closest("tr").remove()' class='btn btn-danger btn-sm'><i class='fa fa-times'></i></button></td>
 					</tr>
 					<?php endwhile; ?>
@@ -69,6 +69,7 @@ $items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p
 		start_load()
 		if($('#plist tbody tr').length <= 0){
 			alert_toast("You must add atleast 1 music to list list",'warning')
+			end_load();
 			return false;
 		}
 		$.ajax({
@@ -104,7 +105,7 @@ $items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p
 				success:function(resp){
 					if(resp){
 						resp = JSON.parse(resp)
-						if(resp.lenght <=0){
+						if(resp.length <=0){
 							$("#suggest").hide()
 							$("#suggest ul").html('')
 						}else{
