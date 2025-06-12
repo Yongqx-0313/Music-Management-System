@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Restrict access to admin only
+if (!isset($_SESSION['login_type']) || $_SESSION['login_type'] != 1) {
+    echo "<script>alert('Access Denied. Admins only.'); location.href='index.php';</script>";
+    exit();
+}
+
+include 'db_connect.php';
+
+// Fetch all users
+$sql = "SELECT * FROM users ORDER BY id ASC";
+$result = $conn->query($sql);
+?>
+
 <?php include'db_connect.php' ?>
 <div class="col-lg-12">
 	<div class="card card-outline card-success">
