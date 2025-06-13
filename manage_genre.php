@@ -12,7 +12,7 @@ if(isset($_GET['id'])){
 		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<div class="form-group">
 			<label for="genre" class="control-label">Genre</label>
-			<input type="text" class="form-control form-control-sm" name="genre" id="genre" value="<?php echo isset($genre) ? $genre : '' ?>">
+			<input type="text" class="form-control form-control-sm" name="genre" id="genre" value="<?php echo isset($genre) ? $genre : '' ?>" required>
 		</div>
 		<div class="form-group">
 			<label for="description" class="control-label">Description</label>
@@ -38,6 +38,10 @@ if(isset($_GET['id'])){
 	$(document).ready(function(){
 		$('#manage-genre').submit(function(e){
 			e.preventDefault();
+			if (!this.checkValidity()) {
+        		this.reportValidity();
+        		return;
+    		}
 			start_load()
 			$.ajax({
 				url:'ajax.php?action=save_genre',
