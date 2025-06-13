@@ -120,12 +120,11 @@
 	}
 
 	function check_list() {
+		$('#ns').remove()
+
 		var count = $('.music-item:visible').length
-		if (count > 0) {
-			if ($('#ns').length > 0)
-				$('#ns').remove()
-		} else {
-			var ns = $('<div class="col-md-12 text-center text-white" id="ns"><b><i>No data to be display.</i></b></b></div>')
+		if (count === 0) {
+			var ns = $('<div class="col-md-12 text-center text-white" id="ns"><b><i>No data to be display.</i></b></div>')
 			$('#music-list').append(ns)
 		}
 	}
