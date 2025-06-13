@@ -34,7 +34,7 @@
 	<button class="btn btn-primary" id="play_all">Play All</button>
 	<div class="row" id="music-list">
 		<?php
-		$musics = $conn->query("SELECT u.*,g.genre FROM uploads u inner join genres g on g.id = u.genre_id order by u.title asc");
+		$musics = $conn->query("SELECT u.*,g.genre FROM uploads u inner join genres g on g.id = u.genre_id WHERE u.user_id = {$_SESSION['login_id']} order by u.title asc");
 		while ($row = $musics->fetch_assoc()):
 			$trans = get_html_translation_table(HTML_ENTITIES, ENT_QUOTES);
 			unset($trans["\""], $trans["<"], $trans[">"], $trans["<h2"]);

@@ -46,7 +46,7 @@
 	</div>
 	<div class="row" id="playlist-list">
 		<?php
-		$playlist = $conn->query("SELECT * FROM playlist order by title asc");
+		$playlist = $conn->query("SELECT * FROM playlist WHERE user_id = {$_SESSION['login_id']} ORDER by title asc");
 		while ($row = $playlist->fetch_assoc()):
 		?>
 			<div class="card bg-black playlist-item my-2 mx-1 custom-width" date-id="<?php echo $row['id'] ?>">

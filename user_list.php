@@ -28,7 +28,7 @@ $result = $conn->query($sql);
 			<table class="table tabe-hover table-bordered" id="list">
 				<thead>
 					<tr>
-						<th class="text-center">#</th>
+						<th class="text-center"><?php echo (int)$_SESSION['login_id']; ?>#</th>
 						<th>Name</th>
 						<th>Contact #</th>
 						<th>Role</th>
@@ -69,6 +69,7 @@ $result = $conn->query($sql);
 	</div>
 </div>
 <script>
+	var current_user_id = <?php echo (int)$_SESSION['login_id']; ?>;
 	$(document).ready(function(){
 		$('#list').dataTable()
 	$('.view_user').click(function(){
@@ -76,6 +77,10 @@ $result = $conn->query($sql);
 	})
 	$('.delete_user').click(function(){
 	let id = $(this).attr('data-id');
+		if (parseInt(id) === parseInt(current_user_id)) {
+				alert_toast("❌ You cannot delete your own account while logged in.", 'error');
+				return;
+		}
 		if(confirm("Are you sure to delete this user?")) {
 		delete_user(id);
 		}
