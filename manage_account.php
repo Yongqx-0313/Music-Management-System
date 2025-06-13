@@ -59,7 +59,7 @@ foreach ($qry as $k => $v) {
 							</select>
 						</div>
 					<?php else: ?>
-						<input type="hidden" name="type" value="3">
+						<input type="hidden" name="type" value="<?php echo $type ?>">
 					<?php endif; ?>
 					<div class="form-group">
 						<label class="control-label">Email</label>
