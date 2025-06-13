@@ -56,6 +56,7 @@ Class Action {
 		header("location:../index.php");
 	}
 	function save_user(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
@@ -166,6 +167,7 @@ Class Action {
 }
 
 	function update_user(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
@@ -206,6 +208,7 @@ Class Action {
 		}
 	}
 function delete_user(){
+	$_POST = $this->sanitize_input($_POST);
 	extract($_POST);
 
 	// Get the type of user being deleted
@@ -234,7 +237,8 @@ function delete_user(){
 }
 
 	function save_genre(){
-		extract($_POST);
+		$_POST = $this->sanitize_input($_POST);
+		extract($_POST);extract($_POST);
 		$data = "";
 
 		foreach($_POST as $k => $v){
@@ -264,6 +268,7 @@ function delete_user(){
 		}
 	}
 	function delete_genre(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$delete = $this->db->query("DELETE FROM genres where id = $id");
 		if($delete){
@@ -271,6 +276,7 @@ function delete_user(){
 		}
 	}
 	function save_music(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$data = "";
 
@@ -321,11 +327,14 @@ function delete_user(){
 		return json_encode($data);
 	}
 	function save_playlist(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$data = "";
 
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id','cover')) && !is_numeric($k)){
+				#escape sql input
+				$v = $this->db->real_escape_string($v);
 				if(empty($data)){
 					$data .= " $k='$v' ";
 				}else{
@@ -369,6 +378,7 @@ function delete_user(){
 		return json_encode($data);
 	}
 	function save_playlist_items(){
+		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$ids=array();
 		foreach($music_id as $k => $v){
@@ -388,5 +398,19 @@ function delete_user(){
 			$this->db->query("DELETE FROM playlist_items where playlist_id = $playlist_id and music_id not in (".implode(',',$music_id).") ");
 			return 1;
 		}
+	}
+
+	private function sanitize_input($input){
+		$sanitized = [];
+		foreach($input as $key => $value){
+			if ($key === 'description') {
+        // Allow limited safe HTML
+        $sanitized[$key] = strip_tags($value, '<p><br><b><i><strong><em><ul><li><ol>');
+    }   else {
+        // Escape all other fields for safety
+        $sanitized[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    	}
+    }
+    return $sanitized;
 	}
 }
