@@ -26,13 +26,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="" class="control-label">Title</label>
-							<input type="text" class="form-control form-control-sm" name="title" value="<?php echo isset($mtitle) ? $mtitle : '' ?>">
+							<input type="text" class="form-control form-control-sm" name="title" maxlength="100" value="<?php echo isset($mtitle) ? $mtitle : '' ?>">
 						</div>
 					</div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="" class="control-label">Artist</label>
-              <input type="text" class="form-control form-control-sm" name="artist" value="<?php echo isset($artist) ? $artist : '' ?>">
+              <input type="text" class="form-control form-control-sm" name="artist" maxlength="100" required value="<?php echo isset($artist) ? $artist : '' ?>">
             </div>
           </div>
 				</div>
