@@ -80,7 +80,7 @@
     	<div class="card-footer border-top border-info">
     		<div class="d-flex w-100 justify-content-center align-items-center">
     			<button class="btn btn-flat  bg-gradient-primary mx-2" form="manage-music">Save</button>
-    			<button class="btn btn-flat bg-gradient-secondary mx-2" type="button">Cancel</button>
+          <button type="button" class="btn btn-flat bg-gradient-secondary mx-2" onclick="window.location.href='index.php?page=music_list';">Cancel</button>
     		</div>
     	</div>
 	</div>
