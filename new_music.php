@@ -66,8 +66,8 @@
            <div class="form-group">
               <label for="" class="control-label">Cover Image</label>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="customFile" name="cover" accept="image/*" onchange="displayImgCover(this,$(this))">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+                  <input type="file" class="custom-file-input" id="customFile2" name="cover" accept="image/*" onchange="displayImgCover(this,$(this))">
+                  <label class="custom-file-label" for="customFile2">Choose file</label>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-center">
