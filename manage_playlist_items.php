@@ -130,26 +130,24 @@ $items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p
 		}
 	})
 	function li_func(){
-		$('#msearch').val('')
-		$('.suggest-item').click(function(){
-			var data = $(this).attr('data-json')
-				data = JSON.parse(data)
-			if($('#plist tbody').find('tr[data-id="'+data.id+'"]').length > 0){
-				alert_toast("Music already on the list","error")
-				return false;
-			}
+    // Do NOT clear input here!
+    $('.suggest-item').click(function(){
+        var data = $(this).attr('data-json')
+        data = JSON.parse(data)
+        if($('#plist tbody').find('tr[data-id="'+data.id+'"]').length > 0){
+            alert_toast("Music already on the list","error")
+            return false;
+        }
 
-			var tr = $('<tr data-id="'+data.id+'"></tr>')
-			tr.append('<td><span class="btn bg-gradient-success rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px;z-index:2" onclick="play_music({0:{id:'+data.id+',upath:\'assets/uploads/'+data.upath+'\'}})"><div class="fa fa-play text-white"></div></span></td>')
-			tr.append("<td><input name='music_id[]' value='"+data.id+"' type='hidden'><i class='fa fa-music text-gradient-primary'></i>"+data.title+"</td>")
-			tr.append("<td class='text-right'><button type='button' onclick='$(this).closest(\"tr\").remove()' class='btn btn-danger btn-sm'><i class='fa fa-times'></i></button></td>")
-			$('#plist tbody').prepend(tr)
-			$("#suggest").hide()
-			$("#suggest ul").html('')
-		})
-	}
-	$('#msearch').on('search', function () {
-		$("#suggest").hide()
-		$("#suggest ul").html('')
-	  })
+        var tr = $('<tr data-id="'+data.id+'"></tr>')
+        tr.append('<td><span class="btn bg-gradient-success rounded-circle d-flex justify-content-center align-items-center" style="width:30px;height:30px;z-index:2" onclick="play_music({0:{id:'+data.id+',upath:\'assets/uploads/'+data.upath+'\'}})"><div class="fa fa-play text-white"></div></span></td>')
+        tr.append("<td><input name='music_id[]' value='"+data.id+"' type='hidden'><i class='fa fa-music text-gradient-primary'></i>"+data.title+"</td>")
+        tr.append("<td class='text-right'><button type='button' onclick='$(this).closest(\"tr\").remove()' class='btn btn-danger btn-sm'><i class='fa fa-times'></i></button></td>")
+        $('#plist tbody').prepend(tr)
+        $("#suggest").hide()
+        $("#suggest ul").html('')
+        $('#msearch').val(''); // <-- Only clear input when a suggestion is selected!
+    });
+}
+
 </script>
