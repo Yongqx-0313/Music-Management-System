@@ -360,13 +360,16 @@ function delete_user(){
 		}
 	}
 	function find_music(){
-		extract($_POST);
-		$get = $this->db->query("SELECT id,title,upath,artist,cover_image FROM uploads where title like '%$search%' or artist like '%$search%' ");
-		$data = array();
-		while($row = $get->fetch_assoc()){
-			$data[] = $row;
-		}
-		return json_encode($data);
+    	$user_id = (int)$_SESSION['login_id'];
+    	extract($_POST);
+    	$sql = "SELECT id,title,upath,artist,cover_image FROM uploads WHERE user_id = $user_id AND (title LIKE '%$search%' OR artist LIKE '%$search%')";
+    	$get = $this->db->query($sql);
+    	$data = array();
+    	while($row = $get->fetch_assoc()){
+        $data[] = $row;
+    	}
+    	echo json_encode($data); // Use echo for AJAX
+    	exit();
 	}
 	function save_playlist_items(){
 		extract($_POST);
