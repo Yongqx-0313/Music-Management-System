@@ -39,7 +39,7 @@ foreach($qry as $k => $v){
 			<tbody>
 				<?php 
 				$i = 0;
-					$items = $conn->query("SELECT * FROM uploads where genre_id =$id ");
+					$items = $conn->query("SELECT * FROM uploads WHERE genre_id = $id AND user_id = {$_SESSION['login_id']}");
 					while($row= $items->fetch_assoc()):
 				?>
 					<tr class="pitem" data-queue="<?php echo $i ?>" data-id="<?php echo $row['id'] ?>" data-upath="<?php echo $row['upath'] ?>">
