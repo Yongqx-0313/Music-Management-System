@@ -381,7 +381,6 @@ function delete_user(){
     	exit();
 	}
 	function save_playlist_items(){
-		$_POST = $this->sanitize_input($_POST);
 		extract($_POST);
 		$ids=array();
 		foreach($music_id as $k => $v){
