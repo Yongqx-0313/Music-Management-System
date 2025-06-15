@@ -1,7 +1,10 @@
 <?php
 include 'db_connect.php';
 if(isset($_GET['id'])){
-	$qry = $conn->query("SELECT * FROM playlist where id={$_GET['id']}")->fetch_array();
+	$stmt = $conn->prepare("SELECT * FROM playlist where id = ?");
+	$stmt->bind_param("i", $_GET['id']);
+	$stmt->execute();
+	$qry = $stmt->get_result()->fetch_array();
 	foreach($qry as $k => $v){
 		if($k == 'title')
 			$k = 'ptitle';
@@ -14,11 +17,11 @@ if(isset($_GET['id'])){
 		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<div class="form-group">
 			<label for="title" class="control-label">Title</label>
-			<input type="text" class="form-control form-control-sm" name="title" id="title" value="<?php echo isset($ptitle) ? $ptitle : '' ?>">
+			<input type="text" class="form-control form-control-sm" name="title" id="title" value="<?php echo htmlspecialchars($ptitle ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 		</div>
 		<div class="form-group">
 			<label for="description" class="control-label">Description</label>
-			<textarea name="description" id="description" cols="30" rows="3" class="form-control"><?php echo isset($description) ? $description : "" ?></textarea>
+			<textarea name="description" id="description" cols="30" rows="3" class="form-control"><?php echo htmlspecialchars($description ?? '', ENT_QUOTES, 'UTF-8'); ?></textarea>
 		</div>
 		<div class="row">
 			<div class="form-group">

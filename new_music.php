@@ -66,8 +66,8 @@
            <div class="form-group">
               <label for="" class="control-label">Cover Image</label>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="customFile" name="cover" accept="image/*" onchange="displayImgCover(this,$(this))">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+                  <input type="file" class="custom-file-input" id="customFile2" name="cover" accept="image/*" onchange="displayImgCover(this,$(this))">
+                  <label class="custom-file-label" for="customFile2">Choose file</label>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-center">
@@ -80,7 +80,7 @@
     	<div class="card-footer border-top border-info">
     		<div class="d-flex w-100 justify-content-center align-items-center">
     			<button class="btn btn-flat  bg-gradient-primary mx-2" form="manage-music">Save</button>
-    			<button class="btn btn-flat bg-gradient-secondary mx-2" type="button">Cancel</button>
+          <button type="button" class="btn btn-flat bg-gradient-secondary mx-2" onclick="window.location.href='index.php?page=music_list';">Cancel</button>
     		</div>
     	</div>
 	</div>

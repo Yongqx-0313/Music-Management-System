@@ -1,7 +1,10 @@
 <?php session_start() ?>
 <?php 
 include 'db_connect.php';
-$items = $conn->query("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p inner join uploads m on m.id = p.music_id where p.playlist_id ={$_GET['pid']} ");
+$stmt = $conn->prepare("SELECT p.*,m.title,m.artist,m.upath FROM playlist_items p inner join uploads m on m.id = p.music_id where p.playlist_id = ?");
+$stmt->bind_param("i", $_GET['pid']);
+$stmt->execute();
+$items = $stmt->get_result();
 ?>
 <?php include 'db_connect.php'; ?>
 <div class="container-fluid">
