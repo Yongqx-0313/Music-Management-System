@@ -1,4 +1,4 @@
-### Project: Simple Music Cloud Community System using PHP/MySQLi
+# Project: Simple Music Cloud Community System using PHP/MySQLi
 
 # About the project
 The Simple Music Cloud Community System is a simple project that is inspired by the Spotify Web Application. This system requires system credentials to access all of the data and functionalities of the music cloud community system. The system has 2 types of users which is the Administrator and the Subscriber. The Admin user can manage all the functionalities of the system including the music uploaded, and playlist of the subscriber user while the Subscriber user can only manage the songs they uploaded and playlist they created but since this also like and music publishing site, the system allows all users to listen all uploaded music or songs and also listen to the playlist songs created by other subscribers and admin. The Subscriber user can also download any song that can be accessed in this system.
