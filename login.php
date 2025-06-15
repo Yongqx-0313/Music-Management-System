@@ -50,7 +50,7 @@ header("location:index.php?page=home");
   				<span  class="m-4 p-2">
   				<h1 class="text-gradient-primary text-center" style="font-size: 4rem"><b><i class="fas fa-headphones-alt text-gradient-primary"></i></b></h1>
   				<h2 class="text-gradient-primary"><b>Simple Music Clound Community.</b></h2>
-					<h3>Testing by Qi Xiang</h3>
+				
   				</span>
   			</div>
   			<div class="card col-sm-7">
