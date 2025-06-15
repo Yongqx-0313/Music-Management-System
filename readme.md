@@ -27,10 +27,10 @@ The Simple Music Cloud Community System was developed using HTML, PHP/MySQLi, CS
 6. Open a web browser and browse the project. E.g [http://localhost/Music-Management-System2]
 
 ---------------------------------------------------
-# Admin Access
-email: admin@admin.com
-password: admin123
-# Sample Downloaded Music: https://www.bensound.com
+Admin Access<br>
+email: admin@admin.com<br>
+password: admin123<br>
+Sample Downloaded Music: https://www.bensound.com
 ----------------------------------------------------
 
 # Bug Detected and Fixed:
